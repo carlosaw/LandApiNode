@@ -1,8 +1,7 @@
 import express from 'express';
 import path from 'path';
 import mustache from 'mustache-express';
-import { getTitleAPI } from './helpers/titleAPI';
-import { getBodyAPI } from './helpers/bodyAPI';
+import { getFraseAPI, getEmailUser } from './helpers/fraseAPI';
 
 const server = express();
 server.set('view engine', 'mustache');
@@ -29,15 +28,19 @@ server.get('/', async (req, res) => {
         greeting = 'Boa tarde';
     }
 
-    let title = await getTitleAPI();
-    let body = await getBodyAPI();
-    
+    let frase = await getFraseAPI();
+    let userName = await getFraseAPI();
+    let userEmail = await getEmailUser();
+
     res.render('home', {
         time: `${hourStr}:${minStr}`,
         name,
         greeting,
-        title: title,
-        body: body
+        phrase: frase,
+        //author: frase.autor
+        userName,
+        userEmail
+        
     });
 });
 

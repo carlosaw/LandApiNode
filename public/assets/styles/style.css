@@ -55,6 +55,8 @@ body {
 
 .bottom .phrase:hover .author {
     height: 20px;
+    color: #000000;
+    font-weight: bold;
 }
 
 @media (max-width: 600px) {
